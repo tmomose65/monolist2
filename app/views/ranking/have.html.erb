@@ -1,0 +1,33 @@
+<div class="ranking-title">  
+  <h2>Havesらんきんぐ</h2>
+</div>
+
+<div class="ranking-table alt-table-responsive">
+<table class="table table-striped"">
+  <thead>
+   <tr>
+     <th class="col-md-1">順位</th>
+     <th class="col-md-1">商品画像</th>
+     <th class="col-md-6">商品名</th>
+     <th class="col-md-1">Have数</th>
+   </tr>
+  </thead>
+  <tbody>
+   <% @ranking_item_ids.each_with_index do |ranking_item_id, i| %>
+   <% @ranking_item = Item.find(ranking_item_id) %>
+     <tr>
+      <td><%= i + 1 %></td>
+      <td>
+        <% if @ranking_item.small_image.present? %>
+          <%= image_tag(@ranking_item.small_image , alt: @ranking_item.title) %>
+        <% else %>
+          <%= image_tag("no-image.png" , alt: @ranking_item.title) %>
+        <% end %>
+      </td>
+      <td><%= @ranking_item.title %></td>
+      <td><%= @ranking_item.have_users.count %></td>
+     </tr>
+   <% end %>
+  </tbody>
+</table>
+</div>
