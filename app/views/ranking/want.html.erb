@@ -15,6 +15,7 @@
   <tbody>
    <% @ranking_item_ids.each_with_index do |ranking_item_id, i| %>
    <% @ranking_item = Item.find(ranking_item_id) %>
+   <% ranking_item_title = @ranking_item.title %>
      <tr>
       <td><%= i + 1 %></td>
       <td>
@@ -24,7 +25,7 @@
           <%= image_tag("no-image.png" , alt: @ranking_item.title) %>
         <% end %>
       </td>
-      <td><%= @ranking_item.title %></td>
+      <td><%= link_to "#{ranking_item_title}", item_path(@ranking_item.id) %></td>
       <td><%= @ranking_item.want_users.count %></td>
      </tr>
    <% end %>
